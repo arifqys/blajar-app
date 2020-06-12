@@ -1,0 +1,68 @@
+{
+  "chapters" : {
+    "-M9SDmKhfde3XNA3JFuH" : {
+      "contents" : [ {
+        "content" : "Saat ini World Wide Web atau lebih sering disingkat dengan Web merupakan sebuah media yang sering diakses untuk mencari informasi. Web pertama kali dikenalkan oleh Tim Berners Lee pada tahun 1989",
+        "title" : "Sejarah Web",
+        "type" : "material"
+      }, {
+        "answers" : [ {
+          "id" : "A",
+          "label" : "Rasmus Lerdorf"
+        }, {
+          "id" : "B",
+          "label" : "Brendan Eich"
+        }, {
+          "id" : "C",
+          "label" : "Tim Berners Lee"
+        } ],
+        "correctAnswer" : "C",
+        "title" : "Web pertama kali dikenalkan oleh",
+        "type" : "question"
+      }, {
+        "content" : "Saat ini pada umumnya sebuah web didesain hanya agar mudah dipahami oleh manusia, namun sangat sulit dipahami oleh mesin oleh karena itu muncul ide Semantic Web yang merupakan tahapan revolusioner dari dunia World Wide Web.",
+        "title" : "Semantic",
+        "type" : "material"
+      } ],
+      "title" : "Pendahuluan"
+    },
+    "-M9WExmtPtogfCjJcOWg" : {
+      "contents" : [ {
+        "content" : "Resource Description Framework (RDF) adalah spesifikasi yang dibuat oleh W3C sebagai metode umum untuk memodelkan informasi dengan menggunakan sekumpulan format sintaks. Ide dasar dari RDF adalah bagaimana kita dapat membuat pernyataan mengenai sebuah resource Web dalam bentuk ekpresi “Subjet-Predikat-Objek”. Dalam terminology RDF, SPO ini seringkali disebut dengan istilah N-triple.",
+        "title" : "Definisi RDF",
+        "type" : "material"
+      }, {
+        "content" : "Subjek mengacu pada resource yang ingin dideksripsikan. Predikat menggambarkan kelakuan atau karakteristik dari resource tersebut dan mengekspresikan hubungan antara subjek dan objek. ",
+        "title" : "Subjek Predikat",
+        "type" : "material"
+      }, {
+        "answers" : [ {
+          "id" : "A",
+          "label" : "Resource Description Framework"
+        }, {
+          "id" : "B",
+          "label" : "Resource Delimited Framework"
+        }, {
+          "id" : "C",
+          "label" : "Resource Dissemination Framework"
+        } ],
+        "correctAnswer" : "A",
+        "title" : "RDF kepanjangan dari",
+        "type" : "question"
+      } ],
+      "title" : "RDF"
+    },
+    "-M9WdwGbDdaC3j4CynEU" : {
+      "title" : "Linked Data"
+    },
+    "-M9Wdzz3Fb9_9J0Eyzbf" : {
+      "title" : "SPARQL"
+    }
+  },
+  "users" : {
+    "-M9aF1MH_8cyaECjvrh_" : {
+      "name" : "Ahmad Rifqy Syarwani",
+      "nickname" : "Rifqy"
+    }
+  }
+}

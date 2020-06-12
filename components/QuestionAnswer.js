@@ -5,9 +5,16 @@ import TextMedium from './TextMedium'
 
 export default props => {
   const [isSelected, setIsSelected] = useState(false)
+  const selectedHandler = () => {
+    const selected = !isSelected
+    setIsSelected(selected)
+    if (selected) {
+      props.clicked(props.code)
+    }
+  }
 
   return (
-    <TouchableOpacity onPress={() => setIsSelected(!isSelected)}>
+    <TouchableOpacity onPress={selectedHandler}>
       <View style={isSelected ? styles.containerSelected : styles.container}>
         <TextMedium style={styles.answer}>{props.children}</TextMedium>
       </View>
@@ -19,7 +26,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     marginVertical: 5,
-    padding: 10,
+    padding: 20,
     borderColor: colors.selected,
     borderWidth: 1,
     borderRadius: 10
@@ -27,7 +34,7 @@ const styles = StyleSheet.create({
   containerSelected: {
     backgroundColor: colors.selected,
     marginVertical: 5,
-    padding: 10,
+    padding: 20,
     borderColor: colors.selected,
     borderWidth: 1,
     borderRadius: 10

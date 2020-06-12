@@ -1,14 +1,20 @@
 import React from 'react'
-import {Text} from 'react-native'
+import {StyleSheet} from 'react-native'
 import Card from './Card'
 import TextMedium from './TextMedium'
 
 export default props => {
   return (
     <Card>
-      <TextMedium>
+      <TextMedium style={styles.content}>
         {props.content}
       </TextMedium>
     </Card>
   )
 }
+
+const styles = StyleSheet.create({
+  content: {
+    lineHeight: 20
+  }
+})

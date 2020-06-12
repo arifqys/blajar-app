@@ -1,5 +1,5 @@
 import React from 'react'
-import {StyleSheet, View, Text, Image} from 'react-native'
+import {StyleSheet, View, Image} from 'react-native'
 import colors from '../constants/colors'
 import TextBold from './TextBold'
 import TextMedium from './TextMedium'
@@ -11,7 +11,7 @@ export default () => (
     </View>
     <View>
       <TextBold style={styles.title}>Halo Rifqy!</TextBold>
-      <TextMedium style={styles.subtitle}>Mau blajar apa hari ini?</TextMedium>
+      <TextMedium style={styles.subtitle}>Mau belajar apa hari ini?</TextMedium>
     </View>
   </View>
 )
