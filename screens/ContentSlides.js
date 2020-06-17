@@ -100,12 +100,12 @@ export default contentSlides = ({route, navigation}) => {
         <ScrollView style={styles.content}>
         <View style={styles.titleContainer}>
           <View>
-            <TextBold style={styles.title}>{contents[currentSlide].title}</TextBold>
+          <TextBold style={styles.title}>{contents[currentSlide].title}</TextBold>
             <TextMedium style={styles.pages}>{`Halaman ${currentSlide + 1} dari ${contents.length}`}</TextMedium>
           </View>
           {counter > 0 ? 
             <View style={styles.countdown}>
-              <TextBold style={styles.countdownText}>{counter}</TextBold>
+              <TextMedium style={styles.countdownText}>tunggu <TextBold>{counter}</TextBold> detik untuk lanjut</TextMedium>
             </View>
             : null
           }
@@ -135,18 +135,19 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-start'
+    alignItems: 'center'
   },
   countdown: {
     backgroundColor: 'red',
-    width: 30,
-    height: 30,
+    width: 160,
+    height: 20,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 5
   },
   countdownText: {
-    color: 'white'
+    color: 'white',
+    fontSize: 10
   },
   content: {
     flex: 1

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {StyleSheet, View, ScrollView, TouchableOpacity} from 'react-native'
+import {useIsFocused} from '@react-navigation/native' 
 import axios from 'axios'
 import Hello from '../components/Hello'
 import Card from '../components/Card'
@@ -26,7 +27,7 @@ export default chapterList = ({navigation}) => {
             .map((item) => item.chapter_id)
         )
       })
-  }, [refresh])
+  }, [refresh, useIsFocused()])
 
   return (
     <ScrollView>
@@ -50,7 +51,7 @@ export default chapterList = ({navigation}) => {
             key={item[0]} 
             onPress={() => navigation.navigate('Materi', {
               id: item[0],
-              title: item[1].title,
+              title: item[1].title +(completedChapters.includes(item[0]) ? ' (selesai)' : '') ,
               completed: completedChapters.includes(item[0])
             })}
           >
@@ -62,7 +63,7 @@ export default chapterList = ({navigation}) => {
                 {completedChapters.includes(item[0]) ? 
                   (
                     <View>
-                      <TextMedium style={{fontSize: 10, color: 'green'}}><Feather name="check-circle" size={10} color="green" style={{marginRight: 5}} /> completed</TextMedium>
+                      <TextMedium style={{fontSize: 10, color: 'green'}}><Feather name="check-circle" size={10} color="green" style={{marginRight: 5}} /> selesai</TextMedium>
                     </View>
                   ) 
                   : null
