@@ -3,6 +3,7 @@ import {StyleSheet, View, ScrollView, TouchableOpacity} from 'react-native'
 import axios from 'axios'
 import Hello from '../components/Hello'
 import Card from '../components/Card'
+import CardPrimary from '../components/CardPrimary'
 import TextBold from '../components/TextBold'
 import TextMedium from '../components/TextMedium'
 import {Feather} from '@expo/vector-icons';
@@ -30,7 +31,10 @@ export default chapterList = ({navigation}) => {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <Hello />
+        <ScrollView style={{marginBottom: 20}} horizontal>
+          <Hello style={{marginRight: 10}} title="Halo Rifqy!" subtitle="Mau belajar apa hari ini?" source={require('../assets/avatar.png')} />
+          <Hello title={completedChapters.length +' Materi'} subtitle="telah kamu selesaikan" source={require('../assets/check.png')} />
+        </ScrollView>
         <View style={styles.subject}>
           <View>
             <TextBold style={styles.subjectText}>Daftar Materi</TextBold>

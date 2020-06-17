@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import {StyleSheet, View, ScrollView, Button} from 'react-native'
 import {AppLoading} from 'expo'
 import axios from 'axios'
@@ -7,12 +7,18 @@ import Question from '../components/Question'
 import colors from '../constants/colors'
 import TextBold from '../components/TextBold'
 import TextMedium from '../components/TextMedium'
+import { set } from 'react-native-reanimated'
 
 export default contentSlides = ({route, navigation}) => {
+  let INITIAL_COUNTDOWN_TIME = 10;
+  if (route.params.completed) {
+    INITIAL_COUNTDOWN_TIME = 0;
+  }
   const [currentSlide, setCurrentSlide] = useState(0)
   const [contents, setContents] = useState([])
   const [dataCompletion, setDataCompletion] = useState({})
   const [isLoaded, setIsLoaded] = useState(false)
+  const [counter, setCounter] = useState(INITIAL_COUNTDOWN_TIME)
 
   useEffect(() => {
     axios.get(`https://blajar-app.firebaseio.com/chapters/${route.params.id}/contents.json`)
@@ -31,12 +37,40 @@ export default contentSlides = ({route, navigation}) => {
 
   const nextSlideHandler = () => {
     setCurrentSlide(currentSlide + 1)
+    setCounter(INITIAL_COUNTDOWN_TIME)
+  }
+
+  const prevSlideHandler = () => {
+    setCurrentSlide(currentSlide - 1)
+    setCounter(0)
   }
 
   const submitCompletionHandler = () => {
     axios.post('https://blajar-app.firebaseio.com/answers.json', dataCompletion)
       .then(() => navigation.navigate('Selesai'))
   }
+
+  const useInterval = (callback, delay) => {
+    const savedCallback = useRef();
+    // Remember the latest callback.
+    useEffect(() => {
+      savedCallback.current = callback;
+    }, [callback]);
+    // Set up the interval.
+    useEffect(() => {
+      function tick() {
+        savedCallback.current();
+      }
+      if (delay !== null) {
+        let id = setInterval(tick, delay);
+        return () => clearInterval(id);
+      }
+    }, [delay]);
+  }
+
+  useInterval(() => {
+    setCounter(counter - 1);
+  }, 1000);
 
   if (!isLoaded) {
     return <AppLoading />
@@ -53,21 +87,34 @@ export default contentSlides = ({route, navigation}) => {
       content = <Question answers={contents[currentSlide].answers} clicked={answerHandler} />
     }
   
-    let next = <Button title="Lanjut" color={colors.primary} onPress={nextSlideHandler}/>
+    let next = <Button title="Lanjut" color={colors.primary} onPress={nextSlideHandler} disabled={counter > 0}/>
     if (currentSlide === contents.length-1) {
-      next = <Button title="Selesai" color={colors.success} onPress={submitCompletionHandler}/>
+      next = <Button title="Selesai" color={colors.success} onPress={submitCompletionHandler} disabled={counter > 0}/>
+      if (route.params.completed) {
+        next = <Button title="Selesai" color={colors.success} disabled/>
+      }
     }
   
     return (
       <View style={styles.container}>
         <ScrollView style={styles.content}>
-          <TextBold style={styles.title}>{contents[currentSlide].title} </TextBold>
-          <TextMedium style={styles.pages}>{`Halaman ${currentSlide + 1} dari ${contents.length}`}</TextMedium>
+        <View style={styles.titleContainer}>
+          <View>
+            <TextBold style={styles.title}>{contents[currentSlide].title}</TextBold>
+            <TextMedium style={styles.pages}>{`Halaman ${currentSlide + 1} dari ${contents.length}`}</TextMedium>
+          </View>
+          {counter > 0 ? 
+            <View style={styles.countdown}>
+              <TextBold style={styles.countdownText}>{counter}</TextBold>
+            </View>
+            : null
+          }
+        </View>
           {content}
         </ScrollView>
         <View style={styles.buttonContainer}>
           <View style={styles.button}>
-            <Button title="Kembali" color="gray" onPress={() => setCurrentSlide(currentSlide - 1)} disabled={currentSlide === 0 ? true : false}/>
+            <Button title="Kembali" color="gray" onPress={prevSlideHandler} disabled={currentSlide === 0 ? true : false}/>
           </View>
           <View style={styles.button}>
             {next}
@@ -84,6 +131,22 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 20,
     paddingHorizontal: 30
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start'
+  },
+  countdown: {
+    backgroundColor: 'red',
+    width: 30,
+    height: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5
+  },
+  countdownText: {
+    color: 'white'
   },
   content: {
     flex: 1

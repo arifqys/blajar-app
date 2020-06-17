@@ -1,31 +1,23 @@
 import React from 'react'
 import {StyleSheet, View, Image} from 'react-native'
 import colors from '../constants/colors'
+import CardPrimary from './CardPrimary'
 import TextBold from './TextBold'
 import TextMedium from './TextMedium'
 
-export default () => (
-  <View style={styles.container}>
+export default (props) => (
+  <CardPrimary style={props.style}>
     <View>
-      <Image style={styles.avatar} source={require('../assets/avatar.png')} />
+      <Image style={styles.avatar} source={props.source} />
     </View>
     <View>
-      <TextBold style={styles.title}>Halo Rifqy!</TextBold>
-      <TextMedium style={styles.subtitle}>Mau belajar apa hari ini?</TextMedium>
+    <TextBold style={styles.title}>{props.title}</TextBold>
+      <TextMedium style={styles.subtitle}>{props.subtitle}</TextMedium>
     </View>
-  </View>
+  </CardPrimary>
 )
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: colors.primary,
-    padding: 20,
-    borderRadius: 5,
-    marginBottom: 20,
-    elevation: 1
-  },
   avatar: {
     width: 50,
     height: 50,
