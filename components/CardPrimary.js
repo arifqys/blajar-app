@@ -6,7 +6,13 @@ import TextMedium from './TextMedium'
 
 export default props => (
   <View style={{...styles.container, ...props.style}}>
-    {props.children}
+    <View>
+      <Image style={styles.avatar} source={props.source} />
+    </View>
+    <View>
+    <TextBold style={styles.title}>{props.title}</TextBold>
+      <TextMedium style={styles.subtitle}>{props.subtitle}</TextMedium>
+    </View>
   </View>
 )
 
@@ -18,5 +24,19 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 5,
     elevation: 1
+  },   
+  avatar: {
+    width: 50,
+    height: 50,
+    resizeMode: 'contain',
+    marginRight: 20
+  },
+  title: {
+    flex: 1,
+    color: 'white',
+    fontSize: 20,
+  },
+  subtitle: {
+    color: 'white',
   }
 })

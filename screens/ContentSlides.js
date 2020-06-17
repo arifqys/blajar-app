@@ -99,13 +99,13 @@ export default contentSlides = ({route, navigation}) => {
       <View style={styles.container}>
         <ScrollView style={styles.content}>
         <View style={styles.titleContainer}>
-          <View>
-          <TextBold style={styles.title}>{contents[currentSlide].title}</TextBold>
+          <View style={styles.title}>
+          <TextBold style={styles.titleText}>{contents[currentSlide].title}</TextBold>
             <TextMedium style={styles.pages}>{`Halaman ${currentSlide + 1} dari ${contents.length}`}</TextMedium>
           </View>
           {counter > 0 ? 
             <View style={styles.countdown}>
-              <TextMedium style={styles.countdownText}>tunggu <TextBold>{counter}</TextBold> detik untuk lanjut</TextMedium>
+              <TextMedium style={styles.countdownText}>tunggu <TextBold>{counter}</TextBold> detik {"\n"}untuk lanjut</TextMedium>
             </View>
             : null
           }
@@ -137,27 +137,31 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center'
   },
-  countdown: {
-    backgroundColor: 'red',
-    width: 160,
-    height: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 5
-  },
-  countdownText: {
-    color: 'white',
-    fontSize: 10
-  },
-  content: {
-    flex: 1
-  },
   title: {
+    flex: 2
+  },
+  titleText: {
     fontSize: 20
   },
   pages: {
     color: 'gray', 
     marginBottom: 10
+  },
+  countdown: {
+    flex: 1,
+    backgroundColor: 'red',
+    padding: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 50
+  },
+  countdownText: {
+    color: 'white',
+    fontSize: 10,
+    textAlign: 'center'
+  },
+  content: {
+    flex: 1
   },
   buttonContainer: {
     flexDirection: 'row',
