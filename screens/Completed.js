@@ -1,5 +1,5 @@
 import React from 'react'
-import {StyleSheet, View, Button, Image} from 'react-native'
+import {StyleSheet, View, Button, Image, Linking} from 'react-native'
 import colors from '../constants/colors'
 import TextBold from '../components/TextBold'
 import TextMedium from '../components/TextMedium'
@@ -10,6 +10,7 @@ export default ({navigation}) => {
       <Image style={styles.completed} source={require('../assets/completed.png')} />
       <TextBold style={styles.title}>Selamat!</TextBold>
       <TextMedium style={styles.subtitle}>Anda telah berhasil menyelesaikan materi ini</TextMedium>
+      <Button title="Tanya kepada guru" color="gray" onPress={() => Linking.openURL('whatsapp://send?phone=6282132124041')}/>
       <Button title="Kembali ke daftar materi" color={colors.primary} onPress={() => navigation.navigate('Daftar Materi')}/>
     </View>
   )
